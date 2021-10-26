@@ -127,7 +127,7 @@ elseif FORMAT == 'docx' then
 		local t = Targets[id]
 		if t == nil then
 			warnmsg('	Missing reference: ' .. namespace .. ' -> ' .. id)
-			return pandoc.Strong(id .. '??')
+			return {pandoc.Strong(id .. '??')}
 		end
 		id = EscapeId(id)
 
