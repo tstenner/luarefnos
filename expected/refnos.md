@@ -8,11 +8,21 @@ Multi-reference to Figures [1](#fig:1) (A), the cool part of
 cool) & *especially* [1](#tab:foobar) is rendered as **Figures 1 (A),
 the cool part of 1 & 2 and Tables 1 (verycool) & *especially* 1**
 
-![Figure 1: The number one.](img/fig-1.png){#fig:1 width="1in"}
+<figure id="fig:1">
+<img src="img/fig-1.png" style="width:1in" alt="The number one." />
+<figcaption>Figure 1: The number one.</figcaption>
+</figure>
 
-![Figure 2: The unlabeled number two.](img/fig-1.png){#fig: width="1in"}
+<figure id="fig:">
+<img src="img/fig-1.png" style="width:1in"
+alt="The unlabeled number two." />
+<figcaption>Figure 2: The unlabeled number two.</figcaption>
+</figure>
 
-![Figure 3: The number three.](img/fig-1.png){#fig:three width="1in"}
+<figure id="fig:three">
+<img src="img/fig-1.png" style="width:1in" alt="The number three." />
+<figcaption>Figure 3: The number three.</figcaption>
+</figure>
 
 Plot [3](#fig:three) is given above, without adding the "Figure" prefix.
 
