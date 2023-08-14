@@ -60,6 +60,9 @@ end
 
 --- prepends "Figure XY: " to an image caption
 local function InsertNumInImgCaption(caption, namespace, refno, identifier)
+	if caption.long ~= nil then
+		caption = caption.long[1].content
+	end
 	caption:insert(1, pandoc.Str(Cap[namespace].ref .. ' ' .. refno .. ': '))
 end
 
@@ -89,7 +92,8 @@ if FORMAT == 'latex' then
 	end
 
 	function InsertNumInTabCaption(caption, namespace, refno, identifier)
-		caption.long[1].content:insert(label(identifier))
+		-- no longer needed since pandoc 3
+		-- caption.long[1].content:insert(label(identifier))
 	end
 
 	--- replaces the markdown equation with a native latex equation + prepended \\label
@@ -232,6 +236,17 @@ local function HandleTable(tbl)
 	end
 end
 
+local function HandleFigure(fig)
+	local id = fig.identifier
+	if id:sub(1, 4) == 'fig:' then
+		local figno = storeRef('fig', id)
+		if fig.caption ~= nil and fig.caption.long ~= nil then
+			InsertNumInImgCaption(fig.caption, 'fig', figno, id)
+			return fig
+		end
+	end
+end
+
 local function HandleImage(img)
 	local id = img.identifier
 	if id:sub(1, 4) == 'fig:' then
@@ -322,10 +337,12 @@ local function MetaToStr(m)
 		return nil
 	elseif type(m) == 'string' then
 		return m
-	elseif m.t == 'MetaInlines' then
+	elseif m.t == 'MetaInlines' or m.t == 'Str' then
 		return pandoc.utils.stringify(m)
 	elseif m.t == 'MetaString' then
 		return m.str
+	elseif type(m) == 'table' then
+		return MetaToStr(m[1])
 	else
 		warnmsg('unhandled type ' .. type(m))
 		warnmsg(m.t)
@@ -389,6 +406,7 @@ return {{Meta = Init},
 		Header = HandleHeader,
 		Table = HandleTable,
 		Image = HandleImage,
+		Figure = HandleFigure,
 		Span = HandleEquationInSpan
 	},
 	{Cite = HandleCitation}}
