@@ -172,6 +172,10 @@ elseif FORMAT == 'docx' then
 		InsertNumInCaption(caption.long[1].content, namespace, refno, identifier)
 	end
 	function InsertNumInImgCaption(caption, namespace, refno, identifier)
+		if caption.long ~= nil then
+			caption = caption.long[1].content
+		end
+
 		InsertNumInCaption(caption, namespace, refno, identifier)
 	end
 
