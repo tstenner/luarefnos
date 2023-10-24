@@ -24,9 +24,13 @@ As seen in @tab:foobar, commas are handled properly.
 
 ## Equations {#equationchapter}
 
-Equations, such as @eq:pythagoras, have to be put into a span with an id:
+Equations, such as [@eq:pythagoras; @eq:einstein (however short it is)], have to be put into a span with an id:
 
 [$$a^2 + b^2 = c^2$$]{#eq:pythagoras}
+
+They can also be inline: [$$e=mc^2$$]{#eq:einstein}.
+
+Most people prefer @eq:pythagoras, but know [@eq:einstein].
 
 ## Tables
 

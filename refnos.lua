@@ -178,6 +178,15 @@ elseif FORMAT == 'docx' then
 
 		InsertNumInCaption(caption, namespace, refno, identifier)
 	end
+	function InsertNumInEqCaption(eq_span, namespace, refno, identifier)
+		local span = pandoc.Span(DocxFieldFunction(' SEQ ' .. Cap[namespace].ref .. ' \\* ARABIC ', refno))
+		span.attr.identifier = EscapeId(identifier)
+
+		local txt = eq_span.content
+		txt:insert(pandoc.Str(' ('))
+		txt:insert(pandoc.Span(span))
+		txt:insert(pandoc.Str(')'))
+	end
 
 elseif FORMAT == 'markdown' then
 	function InsertNumInTabCaption(caption, namespace, refno, identifier)
@@ -271,7 +280,8 @@ local function HandleEquationInSpan(sp)
 	local ns = getnamespace(id)
 	if ns ~= nil then
 		local refno = storeRef(ns, id)
-		return InsertNumInEqCaption(sp, ns, refno, id)
+		InsertNumInEqCaption(sp, ns, refno, id)
+		return sp
 	end
 end
 
