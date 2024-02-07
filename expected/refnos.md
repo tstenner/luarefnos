@@ -30,10 +30,15 @@ As seen in Table [1](#tab:foobar), commas are handled properly.
 
 ## Equations {#equationchapter}
 
-Equations, such as Equation [1](#eq:pythagoras), have to be put into a
-span with an id:
+Equations, such as Equations [1](#eq:pythagoras) & [2](#eq:einstein)
+(however short it is), have to be put into a span with an id:
 
-[$$a^2 + b^2 = c^2$$]{#eq:pythagoras}
+[$$a^2 + b^2 = c^2$$ (1)]{#eq:pythagoras}
+
+They can also be inline: [$$e=mc^2$$ (2)]{#eq:einstein}.
+
+Most people prefer Equation [1](#eq:pythagoras), but know
+Equation [2](#eq:einstein).
 
 ## Tables
 
