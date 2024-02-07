@@ -12,3 +12,20 @@
 
 Wir verweisen auf Plot \ref{fig:1} und Plots \ref{fig:1}, die
 \ref{fig:2} mit Postfix \& fehlenden \ref{fig:3}.
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Caption}\label{tbl:foobar}\tabularnewline
+\toprule\noalign{}
+Foo & Bar \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Foo & Bar \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 2 \\
+\end{longtable}
+
+Note that Tableu \ref{tbl:foobar} has a special namespace name.

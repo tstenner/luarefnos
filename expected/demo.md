@@ -10,3 +10,11 @@
 
 Wir verweisen auf Plot [1](#fig:1) und Plots [1](#fig:1), die
 [2](#fig:2) mit Postfix & fehlenden **fig:3?**.
+
+  Foo   Bar
+  ----- -----
+  1     2
+
+  : [Tableu 1: ]{#tbl:foobar}Caption
+
+Note that Tableu [1](#tbl:foobar) has a special namespace name.
