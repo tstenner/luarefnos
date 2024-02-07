@@ -242,9 +242,11 @@ local function MoveCaptionAttrsToTable(tab)
 end
 
 local function HandleTable(tbl)
-	if tbl.attr.identifier ~= '' then
-		local refno = storeRef('tab', tbl.attr.identifier)
-		InsertNumInTabCaption(tbl.caption, 'tab', refno, tbl.attr.identifier)
+	local id = tbl.attr.identifier
+	if id ~= '' then
+		local ns = getnamespace(id)
+		local refno = storeRef(ns, tbl.attr.identifier)
+		InsertNumInTabCaption(tbl.caption, ns, refno, tbl.attr.identifier)
 		return tbl
 	end
 end
