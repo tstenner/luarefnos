@@ -7,9 +7,9 @@ for f in samples/*; do
 		pandoc -L refnos.lua $f -o expected/$(basename ${f%%.*}).$outfmt
 	done
 done
-discrepancies=$(git diff -- expected)
+discrepancies="$(git diff -- expected)"
 echo $discrepancies
-if [ ! x"$discrepancies" -eq "x" ]; then
+if [[ "$discrepancies" != "" ]]; then
 	echo "Expected output doesn't match actual output!"
 	echo $discrepandies
 	exit 1
